@@ -1,0 +1,80 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pick a Date and Time</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>When can we hang out? 🐾</h1>
+    <label for="date">Date: </label>
+    <input type="date" id="date"><br><br>
+    <label for="time">Time: </label>
+    <input type="time" id="time"><br><br>
+    <h1>Where:
+      Mini golf? Movie date? A fun game date? Or how about the Ball Museum in Düsseldorf? It's so fun! Check it out here – I've always wanted to go! 🎈</h1>
+    <button onclick="confirmDate()">Confirm</button>
+    <h1>Can’t wait to see you! 🌸</h1>
+  </div>
+
+</body>
+</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let's Hang Out!</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif; /* Fun and cute font */
+            background-color: #fce4ec; /* Light pink background for a cute touch */
+            text-align: center; /* Center-align text for better presentation */
+        }
+        h1 {
+            color: #ff4081; /* Pink color for headers */
+        }
+        .container {
+            padding: 20px;
+        }
+        a {
+            color: #ff4081; /* Pink color for links */
+            text-decoration: none; /* No underline for links */
+        }
+        a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>When can we hang out? 🐾</h1>
+        
+        <label for="date">Date: </label>
+    <input type="date" id="date"><br><br>
+    <label for="time">Time: </label>
+    <input type="time" id="time"><br><br>
+   
+
+        <h2>Where:</h2>
+        <p>Mini golf? Movie date? A fun game date? Or how about the Ball Museum in Düsseldorf? It's so fun! Check it out <a href="https://balloonmuseum.world/de/eintrittskarten-duesseldorf/" target="_blank">here</a> – I've always wanted to go! 🎈</p>
+
+
+        <label for="location">Where would you like to go?: </label>
+        <input type="text" id="location" placeholder="e.g., Mini golf, Movie date"><br><br>
+        <button onclick="confirm()">Ready to make it official? 💌</button>
+        
+        <p>Can’t wait to see you! 🌸</p>
+    </div>
+
+    <script>
+        function confirm() {
+            alert("Date confirmed! 🎉");
+        }
+    </script>
+      <script src="script.js"></script>
+</body>
+</html>
+
