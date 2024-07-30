@@ -37,7 +37,7 @@ function confirmDate() {
     localStorage.setItem('location', location);
 
     // Send data to the server
-    fetch('  https://bumpy-shrimps-peel.loca.lt', { // Update this URL if deploying the server
+    fetch('http://localhost:3000', { // Update this URL if deploying the server
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
