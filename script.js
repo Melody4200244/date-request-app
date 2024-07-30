@@ -37,7 +37,7 @@ function confirmDate() {
     localStorage.setItem('location', location);
 
     // Send data to the server
-    fetch(' https://real-guests-try.loca.lt', { // Update this URL if deploying the server
+    fetch('https://red-gifts-admire.loca.lt', { // Update this URL if deploying the server
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
