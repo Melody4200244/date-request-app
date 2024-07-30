@@ -15,6 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.querySelector('button[onclick="confirmDate()"]')) {
     document.querySelector('button[onclick="confirmDate()"]').addEventListener('click', confirmDate);
   }
+
+  if (window.location.pathname.endsWith('confirmation.html')) {
+    displayConfirmationMessage();
+  }
 });
 
 function moveNoButton() {
@@ -31,38 +35,19 @@ function confirmDate() {
   const location = document.getElementById('location').value;
 
   if (date && time && location) {
-    // Store data in localStorage
     localStorage.setItem('date', date);
     localStorage.setItem('time', time);
     localStorage.setItem('location', location);
-
-    // Send data to the server
-    fetch('https://red-gifts-admire.loca.lt', { // Update this URL if deploying the server
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ date, time, location })
-    })
-    .then(response => response.text())
-    .then(data => {
-      console.log(data);
-      window.location.href = 'confirmation.html';
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
+    window.location.href = 'confirmation.html';
   } else {
     alert('Please select a date, time, and location.');
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  if (window.location.pathname.endsWith('confirmation.html')) {
-    const date = localStorage.getItem('date');
-    const time = localStorage.getItem('time');
-    const location = localStorage.getItem('location');
-    const message = `Great! See you on ${date} at ${time} at ${location}!`;
-    document.getElementById('confirmationMessage').innerText = message;
-  }
-});
+function displayConfirmationMessage() {
+  const date = localStorage.getItem('date');
+  const time = localStorage.getItem('time');
+  const location = localStorage.getItem('location');
+  const message = `Great! See you on ${date} at ${time} at ${location}!`;
+  document.getElementById('confirmationMessage').innerText = message;
+}
