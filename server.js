@@ -1,68 +1,23 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const noButton = document.getElementById('noButton');
-  const yesButton = document.getElementById('yesButton');
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-  if (noButton) {
-    noButton.addEventListener('mouseover', moveNoButton);
-  }
+// Middleware to parse JSON bodies
+app.use(bodyParser.json());
 
-  if (yesButton) {
-    yesButton.addEventListener('click', () => {
-      window.location.href = 'date-time.html';
-    });
-  }
-
-  if (document.querySelector('button[onclick="confirmDate()"]')) {
-    document.querySelector('button[onclick="confirmDate()"]').addEventListener('click', confirmDate);
-  }
+// Route to handle date submissions
+app.post('/submit-date', (req, res) => {
+  const { date, time, location } = req.body;
+  console.log(`Date: ${date}, Time: ${time}, Location: ${location}`);
+  res.send('Date and time received');
 });
 
-function moveNoButton() {
-  const noButton = document.getElementById('noButton');
-  const x = Math.random() * (window.innerWidth - noButton.clientWidth);
-  const y = Math.random() * (window.innerHeight - noButton.clientHeight);
-  noButton.style.left = `${x}px`;
-  noButton.style.top = `${y}px`;
-}
+// Optional: Route to serve a simple message at root URL
+app.get('/', (req, res) => {
+  res.send('Server is running');
+});
 
-function confirmDate() {
-  const date = document.getElementById('date').value;
-  const time = document.getElementById('time').value;
-  const location = document.getElementById('location').value;
-
-  if (date && time && location) {
-    // Store data in localStorage
-    localStorage.setItem('date', date);
-    localStorage.setItem('time', time);
-    localStorage.setItem('location', location);
-
-    // Send data to the server
-    fetch('http://localhost:3000/submit-date', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ date, time, location })
-    })
-    .then(response => response.text())
-    .then(data => {
-      console.log(data);
-      window.location.href = 'confirmation.html';
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-  } else {
-    alert('Please select a date, time, and location.');
-  }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  if (window.location.pathname.endsWith('confirmation.html')) {
-    const date = localStorage.getItem('date');
-    const time = localStorage.getItem('time');
-    const location = localStorage.getItem('location');
-    const message = `Great! See you on ${date} at ${time} at ${location}!`;
-    document.getElementById('confirmationMessage').innerText = message;
-  }
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
