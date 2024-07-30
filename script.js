@@ -31,10 +31,27 @@ function confirmDate() {
   const location = document.getElementById('location').value;
 
   if (date && time && location) {
+    // Store data in localStorage
     localStorage.setItem('date', date);
     localStorage.setItem('time', time);
     localStorage.setItem('location', location);
-    window.location.href = 'confirmation.html';
+
+    // Send data to the server
+    fetch('http://localhost:3000/submit-date', { // Update this URL if deploying the server
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ date, time, location })
+    })
+    .then(response => response.text())
+    .then(data => {
+      console.log(data);
+      window.location.href = 'confirmation.html';
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
   } else {
     alert('Please select a date, time, and location.');
   }
